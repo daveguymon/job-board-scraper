@@ -1,5 +1,6 @@
 task scrape: :environment do
   require 'open-uri'
+  require 'pry'
 
   URL = 'https://jobs.lever.co/stackadapt'
 
@@ -13,13 +14,18 @@ task scrape: :environment do
     team = p.search('a.posting-title > div > span')[1].text
     url = p.search('a.posting-title')[0]['href']
 
+    subpage = Nokogiri::HTML(open(url))
+    description = subpage.css('div.section.page-centered')[1].text
+
     # Skip persisting job if it already exists in db
-    if Job.where(:job_title => job_title, :location => location, :team => team, :url => url).count <= 0
+    if Job.where(:job_title => job_title, :location => location, :team => team, :url => url, :description => description).count <= 0
       Job.create(
         :job_title => job_title,
         :location => location,
         :team => team,
-        :url => url
+        :url => url,
+        :description => description
+
       )
       puts 'Added: ' + (job_title ? job_title : '')
     else
