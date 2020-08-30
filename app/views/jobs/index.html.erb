@@ -1,7 +1,16 @@
+
+
 <% @jobs.each do |j| %>
-  <h1><%= j.job_title %></h1>
-  <p><%= j.location %></p>
-  <p><%= j.team %></p>
-  <p><%= j.url %></p>
-  <p><%= j.description %></p>
+  <div class="card w-75">
+    <div class="card-body">
+      <h4 class="card-title"><%= j.job_title %></h4>
+      <p class="card-text"><%= j.location %> | <%= j.team %></p>
+      <hr>
+      <p class="card-text"><%= parseLinks(j.description) %></p>
+      <hr>
+      <div id="button-container">
+        <a href="<%= j.url %>" class="btn btn-info">Apply</a>
+      </div>
+    </div>
+  </div>
 <% end %>

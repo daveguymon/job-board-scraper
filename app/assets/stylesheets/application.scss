@@ -1,0 +1,23 @@
+
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  background-color: #F5F5F5;
+}
+.card-body {
+  width: 80%;
+  background-color: white;
+  margin: 10px auto;
+  height: auto;
+  padding: 5px;
+
+  #button-container {
+    display: flex;
+    width: 100%;
+    margin: auto;
+    padding: 0px 10px 10px 0px;
+    justify-content: flex-end;
+  }
+}
