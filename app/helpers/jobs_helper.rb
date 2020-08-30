@@ -8,7 +8,7 @@ module JobsHelper
             [A-Z0-9+&@#\/%=~_|$])
     }ix
 
-    description.gsub(/(Watch)/, " Watch")
+    description = description.gsub(/(Watch)/, "  Watch")
     description.gsub(url_regexp, '<a href="\0">\0</a>').html_safe
   end
 end
